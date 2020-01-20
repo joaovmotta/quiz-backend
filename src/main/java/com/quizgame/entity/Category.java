@@ -1,9 +1,13 @@
 package com.quizgame.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Data
 public class Category {
 
     @Id
@@ -13,6 +17,7 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Question> questions;
 
     public Category(Long id){
